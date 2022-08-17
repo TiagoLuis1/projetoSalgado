@@ -1,0 +1,203 @@
+PASSO 1:
+create database;
+use table;
+
+CREATE TABLE Endereco(
+  idEndereco INT NOT NULL AUTO_INCREMENT,
+  logradouro VARCHAR(45) NOT NULL,
+  bairro VARCHAR(45) NOT NULL,
+  cidade VARCHAR(45) NOT NULL,
+  complemento` VARCHAR(45) NULL,
+   PRIMARY KEY (idEndereco))
+);
+
+CREATE TABLE Cliente(
+  idCliente INT NOT NULL AUTO_INCREMENT,
+  nome VARCHAR(45) NOT NULL,
+  fkEndereco INT NOT NULL,
+  numeroCasa VARCHAR(25) NOT NULL,
+   PRIMARY KEY (idCliente),
+   FOREIGN KEY (fkEndereco) REFERENCES Endereco(idEndereco)
+);
+
+CREATE TABLE Telefone(
+  idTelefone INT NOT NULL AUTO_INCREMENT,
+  ddd DECIMAL(2) NOT NULL,
+  numeroTelefone DECIMAL(9) NOT NULL,
+  fkCliente INT NOT NULL,
+   PRIMARY KEY (idTelefone),
+   FOREIGN KEY (fkCliente) REFERENCES Cliente(idCliente)
+);
+
+CREATE TABLE Venda(
+  idVenda INT NOT NULL,
+  valorTotal FLOAT NOT NULL,
+  fkCliente INT NOT NULL,
+  diaVenda DATETIME NOT NULL,
+  entrega TINYINT(2) NOT NULL,
+   PRIMARY KEY (idVenda),
+   FOREIGN KEY (fkCliente) REFERENCES Cliente(idCliente)
+);
+
+CREATE TABLE ProdutosProntos(
+  idProdutosProntos INT NOT NULL AUTO_INCREMENT,
+  quantidade DECIMAL(4) NOT NULL,
+  nome VARCHAR(45) NOT NULL,
+  qtdMinima DECIMAL(4) NOT NULL,
+  valorVenda FLOAT NOT NULL,
+   PRIMARY KEY (idProdutosProntos))
+);
+
+CREATE TABLE ItensVendidos(
+  idItensVendidos INT NOT NULL AUTO_INCREMENT,
+  quantidade DECIMAL(4) NOT NULL,
+  fkVenda INT NOT NULL,
+  fkProdutosProntos INT NOT NULL,
+  descricao VARCHAR(45) NULL,
+  PRIMARY KEY (idItensVendidos),
+    FOREIGN KEY (fkVenda) REFERENCES Venda (idVenda)
+    FOREIGN KEY (fkProdutosProntos) REFERENCES Venda(idVenda)
+),
+
+CREATE TABLE Ingredientes(
+  idIngredientes INT NOT NULL AUTO_INCREMENT,
+  nome` VARCHAR(45) NOT NULL,
+  quantidade DECIMAL(4) NOT NULL,
+  valorMercdo FLOAT NOT NULL,
+  qtdMinima DECIMAL(4) NOT NULL,
+  dataCompra DATETIME NOT NULL,
+   PRIMARY KEY (idIngredientes))
+);
+
+CREATE TABLE Agenda(
+  idAgenda INT NOT NULL AUTO_INCREMENT,
+  diaEntrega DATETIME NOT NULL,
+  valorEntrega FLOAT NOT NULL,
+  fkVenda INT NOT NULL,
+  pago TINYINT NULL,
+   PRIMARY KEY (idAgenda),
+   FOREIGN KEY (fkVenda) REFERENCES Venda(idVenda)
+);
+
+CREATE TABLE itensIngredientes(
+ custo FLOAT NOT NULL,
+ qtdUasada DECIMAL(3) NOT NULL,
+ fkIngredientes INT NOT NULL,
+ fkprodutosProntos INT NOT NULL,
+  PRIMARY KEY (idItensIngredientes),
+  FOREIGN KEY (fkIngredientes) REFERENCES ProdutosProntos (idProdutosProntos),
+  FOREIGN KEY (FKIngredientes) REFERENCES ProsdutosProntos (idProdutosProntos),
+);
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PASSO 2:
+insert into endereco(logradouro,bairro,cidade,complemento) values (" "," "," "," ");
+update endereco set bairro="" where idEnderco=0;
+delete from endereco where bairro="";
+select*from where endereco where bairro;
+
+insert into cliente (nome,numerocasa,fkEndereco) values (" ",0,0);
+update cliente set numerocasa="" where idCliente=0;
+delete from cliente where nome="";
+select*from where cliente where nome="";
+
+insert into telefone (ddd,numerotelefone,fkCliente) values (0,0," ");
+update telefone set ddd=00 where idTelefone=0;
+delete from telefone where ddd=00;
+select*from where telefone where ddd=00;
+
+insert into venda (valortotal,diaVenda,entrega,fkCliente) values (0,0," "," ");
+update venda set entrega="" where idVenda=0;
+delete from venda where entrega="";
+select*from where venda where entrega="";
+
+insert into ProdutosProntos (quantidade,nome,qtsMinima,valorVenda) values (0," ",0,0); 
+update produtosprontos set nome="" where idProdutosProntos=0;
+delete from produtosprontos where nome="";
+select*from where produtosprontos where nome="";
+
+insert into IntensVendidos (quantidade,descricao,fkVenda,fkProdutosProntos) values (0," ",0,0);
+update itensvendidos set quantidade=0000 where idItensVendidos=0;
+delete from itensvendidos where quantidade=0000;
+select*from where itensvendidos where quantidade=0000;
+
+insert into Ingredientes (nome,quantidade,valorMercado,qtdMinima,dataCompra) values (" ",0,0,0,0);
+update ingredientes set nome="" where idIngredientes=0;
+delete from ingredientes where nome="";
+select*from where ingredientes where nome="";
+
+insert into Agenda (diaEntrega,valorEntrega,pago,fkVenda) values (0,0,0,0);
+update agenda set pago=0000 where idAgenda=0",
+delete from agenda where pago=0000;
+select*from where agenda where pago=0000;
+
+insert into ItensIngredientes(custo,qtdUsada,fkIngredientes,fkProdutosProntos) values (0,0,0,0);
+update itensingredientes set custo=0000 where idItensIngredientes=0;
+delete from itensingredientes where custo=0000;
+select*from where custo=0000;
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PASSO 3:
+insert into endereco(logradouro,bairro,cidade,complemento) values ("Pires Barbosa","Campo do galvão","Guaratinguetá","Casa");
+insert into endereco(logradouro,bairro,cidade,complemento) values ("Rua 1","Parque São Francisco","Guaratinguetá","Casa");
+update endereco set rua=Pires Barbosa where João Vieira;
+delete from endereco where rua=Pires Barbosa; 
+selecet*from where endereco rua="Pires Barbosa";
+
+
+insert into cliente (nome,numerocasa,fkEndereco) values ("Tiago",12);
+insert into cliente (nome,numerocasa,fkEndereco) values ("Luis,23);
+update cliente set nome=Luis where nome=Tiago;
+delete from cliente where nome=Tiago;
+selecet*from where cliente nome=Luis;
+
+insert into telefone (ddd,numerotelefone,fkCliente) values (12,988499069);
+insert into telefone (ddd,numerotelefone,fkCliente) values (11,987654532);
+update telefone set ddd=12 where ddd-11;
+delete from telefone where ddd=12;
+selecet*from where telefone ddd=12;
+
+insert into venda (valortotal,diaVenda,entrega,fkCliente) values (230,"20-08-2022",1);
+insert into venda (valortotal,diaVenda,entrega,fkCliente) values (150,"13-09-2022",2);
+update venda set valortotal=200 where valortotal=190;
+delete from venda where valortotal=200;
+selecet*from where venda valortotal=200;
+
+insert into ProdutosProntos (quantidade,nome,qtsMinima,valorVenda) values (200,"Maria",150);
+insert into ProdutosProntos (quantidade,nome,qtsMinima,valorVenda) values (100,"João",80);
+update produtosprontos set nome=Maria where nome=Ana;
+delete from produtosprontos where nome=Maria;
+selecet*from where produtosprontos nome"Maria";
+
+insert into IntensVendidos (quantidade,descricao,fkVenda,fkProdutosProntos) values (200,"Em ordem");
+insert into IntensVendidos (quantidade,descricao,fkVenda,fkProdutosProntos) values (100,"Só carne");
+update itensvendidos set descricao=Só carne where descricao=Só frango;
+delete from itensvendidos where descricao="Só carne";
+selecet*from where itensvendidos descricao="Só carne";
+
+insert into Ingredientes (nome,quantidade,valorMercado,qtdMinima,dataCompra) values ("Trigo",2000,35,1000,"10-08-2022");
+insert into Ingredientes (nome,quantidade,valorMercado,qtdMinima,dataCompra) values ("Carne",3000,90,1500,"10-09-2022");
+update ingredientes set nome=Trigo where nome=Farinha;
+delete from ingredientes where nome="Trigo";
+selecet*from where ingredientes nome="Trigo";
+
+insert into Agenda (diaEntrega,valorEntrega,pago,fkVenda) values ("10-08-2022","sim");
+insert into Agenda (diaEntrega,valorEntrega,pago,fkVenda) values ("10-08-2022","não");
+update agenda set pago=sim where pago=nao;
+delete from agenda where pago="sim";
+selecet*from where agenda pago="sim";
+
+insert into ItensIngredientes(custo,qtdUsada,fkIngredientes,fkProdutosProntos) values (130,1500,1,1);
+insert into ItensIngredientes(custo,qtdUsada,fkIngredientes,fkProdutosProntos) values (80,500,1,1);
+update itensingredientes set custo=130 where custo=150;
+delete from itensingredientes where custo=130;
+selecet*from where itensingredientes custo=130;
+
+
+
+
+
+
+
+
+
+
+
